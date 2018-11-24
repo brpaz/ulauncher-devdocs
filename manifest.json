@@ -1,0 +1,60 @@
+{
+  "manifest_version": "2",
+  "api_version": "1",
+  "name": "DevDocs",
+  "description": "Search on DevDocs from Ulauncher",
+  "developer_name": "Bruno Paz",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.5
+  },
+  "preferences": [{
+      "id": "keyword",
+      "type": "keyword",
+      "name": "DevDocs",
+      "default_value": "docs"
+    },
+    {
+      "id": "docs",
+      "type": "input",
+      "name": "List of Documentation to Download",
+      "default_value": "[\"javascript\",\"git\", \"go\", \"markdown\", \"node\", \"ruby~2.5\", \"php\"]"
+    },
+    {
+      "id": "php",
+      "type": "keyword",
+      "name": "php",
+      "default_value": "php"
+    },
+    {
+      "id": "javascript",
+      "type": "keyword",
+      "name": "javascript",
+      "default_value": "javascript"
+    },
+    {
+      "id": "golang",
+      "type": "keyword",
+      "name": "golang",
+      "default_value": "go"
+    },
+    {
+      "id": "ruby",
+      "type": "keyword",
+      "name": "ruby",
+      "default_value": "ruby~2.5"
+    },
+    {
+      "id": "open_doc_in", 
+      "type": "select",
+      "name": "Open Documentation on",
+      "description": "Indicates in which application you want to open the selected doc.",
+      "default_value": "Browser",
+      "options": [
+        "Browser",
+        "Hawkeye",
+        "DevDocs Protocol"
+      ]
+    }
+  ]
+}
