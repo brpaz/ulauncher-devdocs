@@ -7,7 +7,7 @@
 
 ## Demo
 
-![demo.gif](demo)
+![demo.gif](demo.gif)
 
 ## Requirements
 
