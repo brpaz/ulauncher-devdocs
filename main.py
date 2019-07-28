@@ -46,16 +46,15 @@ class DevdocsExtension(Extension):
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
 
         # initialize DevDocs service.
-        self.devdocs_svc = DevDocsService(
-            LOGGING, os.path.join(CACHE_DIR, 'devdocs'))
+        self.devdocs_svc = DevDocsService(LOGGING,
+                                          os.path.join(CACHE_DIR, 'devdocs'))
 
     def index_docs(self):
         """ Creates a local index of all the DevDocs resources """
         self.devdocs_svc.index()
 
         Notify.init("UlauncherDevDocs")
-        Notify.Notification.new(
-            "Ulauncher Devdocs", "Index Finished").show()
+        Notify.Notification.new("Ulauncher Devdocs", "Index Finished").show()
 
         timer = Timer(DevDocsService.get_index_cache_ttl(), self.index_docs)
         timer.daemon = True
@@ -69,14 +68,14 @@ class DevdocsExtension(Extension):
 
         base_path = os.path.dirname(__file__)
 
-        if os.path.exists(os.path.join(
-                base_path, 'images', "%s.png" % doc_slug)):
+        if os.path.exists(
+                os.path.join(base_path, 'images', "%s.png" % doc_slug)):
             return 'images/%s.png' % doc_slug
 
         base_doc = doc_slug.split("~")[0]
 
-        if os.path.exists(os.path.join(
-                base_path, 'images', "%s.png" % base_doc)):
+        if os.path.exists(
+                os.path.join(base_path, 'images', "%s.png" % base_doc)):
             return 'images/%s.png' % base_doc
 
         return 'images/icon.png'
@@ -118,23 +117,23 @@ class DevdocsExtension(Extension):
 
         if not docs:
             return RenderResultListAction([
-                ExtensionResultItem(icon='images/icon.png',
-                                    name='No documentation found matching your criteria',
-                                    highlightable=False,
-                                    on_enter=HideWindowAction())
+                ExtensionResultItem(
+                    icon='images/icon.png',
+                    name='No documentation found matching your criteria',
+                    highlightable=False,
+                    on_enter=HideWindowAction())
             ])
 
         items = []
         for doc in docs[:10]:
-            items.append(ExtensionResultItem(icon=self.get_icon(doc['slug']),
-                                             name=doc['name'],
-                                             description=doc.get(
-                                                 'release', ""),
-                                             on_enter=SetUserQueryAction(
-                                                 "%s %s:" % (keyword, doc['slug'])),
-                                             on_alt_enter=self.open_in_devdocs(
-                                                 doc['slug'])
-                                             ))
+            items.append(
+                ExtensionResultItem(icon=self.get_icon(doc['slug']),
+                                    name=doc['name'],
+                                    description=doc.get('release', ""),
+                                    on_enter=SetUserQueryAction(
+                                        "%s %s:" % (keyword, doc['slug'])),
+                                    on_alt_enter=self.open_in_devdocs(
+                                        doc['slug'])))
 
         return RenderResultListAction(items)
 
@@ -150,39 +149,47 @@ class DevdocsExtension(Extension):
 
         if not entries:
             return RenderResultListAction([
-                ExtensionResultItem(icon='images/icon.png',
-                                    name='No entries found matching your criteria',
-                                    highlightable=False,
-                                    on_enter=HideWindowAction())
+                ExtensionResultItem(
+                    icon='images/icon.png',
+                    name='No entries found matching your criteria',
+                    highlightable=False,
+                    on_enter=HideWindowAction())
             ])
 
         items = []
         for entry in entries[:8]:
-            items.append(ExtensionResultItem(icon=self.get_icon(doc_slug),
-                                             name=entry['name'],
-                                             description=entry['type'],
-                                             on_enter=self.open_in_devdocs(doc_slug, entry['path'])))
+            items.append(
+                ExtensionResultItem(icon=self.get_icon(doc_slug),
+                                    name=entry['name'],
+                                    description=entry['type'],
+                                    on_enter=self.open_in_devdocs(
+                                        doc_slug, entry['path'])))
 
         return RenderResultListAction(items)
 
     def show_options_menu(self, query):
         """ Shoe some general configuration options for the extension """
         items = [
-            ExtensionResultItem(icon='images/icon.png',
-                                name='Open DevDocs.io',
-                                description='Opens DevDocs on your default browser',
-                                highlightable=False,
-                                on_enter=OpenUrlAction("https://devdocs.io/")),
-            ExtensionResultItem(icon='images/icon.png',
-                                name='Open cache folder',
-                                description="Opens the folder where the documentation cache is stored",
-                                highlightable=False,
-                                on_enter=OpenAction(self.devdocs_svc.cache_dir)),
-            ExtensionResultItem(icon='images/icon.png',
-                                name='Index Documentation',
-                                description="This process might take a while. You will receive a notification when finished.",
-                                highlightable=False,
-                                on_enter=ExtensionCustomAction([]))
+            ExtensionResultItem(
+                icon='images/icon.png',
+                name='Open DevDocs.io',
+                description='Opens DevDocs on your default browser',
+                highlightable=False,
+                on_enter=OpenUrlAction("https://devdocs.io/")),
+            ExtensionResultItem(
+                icon='images/icon.png',
+                name='Open cache folder',
+                description=
+                "Opens the folder where the documentation cache is stored",
+                highlightable=False,
+                on_enter=OpenAction(self.devdocs_svc.cache_dir)),
+            ExtensionResultItem(
+                icon='images/icon.png',
+                name='Index Documentation',
+                description=
+                "This process might take a while. You will receive a notification when finished.",
+                highlightable=False,
+                on_enter=ExtensionCustomAction([]))
         ]
 
         return RenderResultListAction(items)

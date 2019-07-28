@@ -1,6 +1,5 @@
 {
-  "manifest_version": "2",
-  "api_version": "1",
+  "required_api_version": "^2.0.0",
   "name": "DevDocs",
   "description": "Search on DevDocs from Ulauncher",
   "developer_name": "Bruno Paz",
@@ -45,7 +44,7 @@
       "default_value": "ruby~2.5"
     },
     {
-      "id": "open_doc_in", 
+      "id": "open_doc_in",
       "type": "select",
       "name": "Open Documentation on",
       "description": "Indicates in which application you want to open the selected doc.",

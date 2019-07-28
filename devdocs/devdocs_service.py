@@ -97,8 +97,9 @@ class DevDocsService():
             data = json.load(f)
 
         if query:
-            data = [x for x in data if query.strip().lower()
-                    in x['name'].lower()]
+            data = [
+                x for x in data if query.strip().lower() in x['name'].lower()
+            ]
 
         return data
 
@@ -115,14 +116,17 @@ class DevDocsService():
 
         entries = data['entries']
         if query:
-            entries = [x for x in entries if query.strip().lower()
-                       in x['name'].lower()]
+            entries = [
+                x for x in entries
+                if query.strip().lower() in x['name'].lower()
+            ]
 
             # Apply some stuff to get results with more relevance.
             # @see https://stackoverflow.com/questions/17903706/how-to-sort-list-of-strings-by-best-match-difflib-ratio
-            entries = sorted(
-                entries, key=lambda x: difflib.SequenceMatcher(
-                    None, x['name'], query).ratio(), reverse=True)
+            entries = sorted(entries,
+                             key=lambda x: difflib.SequenceMatcher(
+                                 None, x['name'], query).ratio(),
+                             reverse=True)
 
         return entries
 
