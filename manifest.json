@@ -17,7 +17,7 @@
       "id": "docs",
       "type": "input",
       "name": "List of Documentation to Download",
-      "default_value": "[\"javascript\",\"git\", \"go\", \"markdown\", \"node\", \"ruby~2.5\", \"php\"]"
+      "default_value": "[\"javascript\",\"git\", \"go\", \"markdown\", \"node\", \"ruby~2.6\", \"rails~6.0\", \"php\"]"
     },
     {
       "id": "php",
@@ -41,7 +41,13 @@
       "id": "ruby",
       "type": "keyword",
       "name": "ruby",
-      "default_value": "ruby~2.5"
+      "default_value": "ruby~2.6"
+    },
+    {
+      "id": "rails",
+      "type": "keyword",
+      "name": "rails",
+      "default_value": "rails~6.0"
     },
     {
       "id": "open_doc_in",
