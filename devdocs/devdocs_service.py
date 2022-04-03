@@ -10,7 +10,7 @@ DEVDOCS_BASE_URL = 'https://devdocs.io'
 
 DEVDOCS_INDEX_ALL_URL = 'https://devdocs.io/docs/docs.json'
 
-DEVDOCS_DOC_ENTRIES_URL = 'https://docs.devdocs.io/%slug%/index.json'
+DEVDOCS_DOC_ENTRIES_URL = 'https://devdocs.io/docs/%slug%/index.json'
 
 
 class DevDocsService():
